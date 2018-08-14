@@ -4,37 +4,49 @@
 
 using namespace std;
 
-void mostraLista(ListaCircular * list);
-
-int main()
-{
-    ListaCircular *list = new ListaCircular();
-
-    // Adicionando valores
-    list->adFinal(10);
-    list->adFinal(20);
-    list->adFinal(30);
-    list->adFinal(40);
-
-    mostraLista(list);
-
-    return 0;
-}
-
-void mostraLista(ListaCircular * list){
+void mostraLista(ListaCircular * lista){
 
     Celula *percorre;
     int cont;
-    if (list->verTamanho() == 0)
+    if (lista->verTamanho() == 0)
         cout << "Lista vazia";
     else {
         cout << "IMPRIMINDO LISTA" << endl;
-        for (percorre = list->getUltimo()->getProx(),cont = 0;(cont !=list->verTamanho());percorre = percorre->getProx(),cont++)
-              cout << percorre->getInfo() << endl;
+        for (percorre = lista->getUltimo()->getProx(),cont = 0;  (cont !=lista->verTamanho());  percorre = percorre->getProx(),cont++){
+                cout << percorre->getInfo() << endl;
+        }
 
     }
 }
 
+void roletarussa(ListaCircular * lista){
+    Celula * percorre;
+    percorre=lista->getUltimo();
+    int i=0;
+    while (lista->verTamanho()>1){
+        for (i=0;i<2;i++){
+            percorre=percorre->getProx();
+        }
+        cout<<percorre->getInfo()<<" morreu, coitado."<<endl;
+        lista->removeQualquer(percorre);
+        percorre=percorre->getProx();
+    }
+}
 
+int main(){
+  ListaCircular * list= new ListaCircular();
+    list->adFinal("Roberto");
+    list->adFinal("Silvio");
+    list->adFinal("Dalvio");
+    list->adFinal("Laercio");
+    list->adFinal("JooJ");
+    list->adFinal("Gilson");
 
-
+    cout<<"Soldados:"<<endl;
+    mostraLista(list);
+    cout<<"------------------------"<<endl;
+    roletarussa(list);
+    cout<<"O sobrevivente foi"<<endl;
+    mostraLista(list);
+    return 0;
+}

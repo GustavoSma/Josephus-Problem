@@ -1,15 +1,24 @@
 #include <cstdlib>
+#include <iostream>
 #include "Celula.h"
 
-Celula::Celula(int n , Celula * p) {
-	info =  n;
+Celula::Celula(std::string n, Celula * p) {
+	info = n;
 	prox = p;
 }
 
-int Celula::getInfo() {}
+std::string Celula::getInfo() {
+    return info;
+}
 
-void Celula::setInfo(int n) {}
+void Celula::setInfo(std::string n) {
+    info = n;
+}
 
-Celula * Celula::getProx() {}
+Celula * Celula::getProx() {
+    return prox;
+}
 
-void Celula::setProx(Celula * p) {}
+void Celula::setProx(Celula * p) {
+    prox = p;
+}

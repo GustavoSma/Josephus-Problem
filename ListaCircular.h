@@ -1,5 +1,4 @@
 #include "Celula.h"
-
 #ifndef LISTACIRCULAR_H_INCLUDED
 #define LISTACIRCULAR_H_INCLUDED
 
@@ -15,12 +14,12 @@ public:
     Celula * getUltimo();
     int verTamanho();
     bool verVazio();
-    int verPrimeiro();
-    int verUltimo();
-    void adInicio(int p);
-    void adFinal (int p);
+    std::string verPrimeiro();
+    std::string verUltimo();
+    void adInicio(std::string p);
+    void adFinal (std::string p);
     void removeInicio();
-    void removeFinal();
+    void removeQualquer(Celula * p);
 
 };
 

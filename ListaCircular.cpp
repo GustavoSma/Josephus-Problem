@@ -4,24 +4,86 @@
 #include "Celula.h"
 
 
-ListaCircular::ListaCircular(){}
+ListaCircular::ListaCircular(){
+    ultimo = NULL;
+    tamanho = 0;
+}
 
-Celula * ListaCircular::getUltimo() {}
+Celula * ListaCircular::getUltimo() {
+    return ultimo;
+}
 
-int ListaCircular::verTamanho(){}
+int ListaCircular::verTamanho(){
+    return tamanho;
+}
 
-bool ListaCircular::verVazio(){}
+bool ListaCircular::verVazio(){
+    return !tamanho;
+}
 
-int ListaCircular::verPrimeiro(){}
+std::string ListaCircular::verPrimeiro(){
+    return ultimo->getProx()->getInfo();
+}
 
-int ListaCircular::verUltimo(){}
+std::string ListaCircular::verUltimo(){
+    return ultimo->getInfo();
+}
 
-void ListaCircular::adInicio(int p){}
+void ListaCircular::adInicio(std::string p){
+    Celula * temp = new Celula(p, ultimo->getProx());
 
-void ListaCircular::adFinal (int p) {}
+    if(temp != NULL){
+        ultimo->setProx(temp);
+        tamanho++;
+        if(tamanho==1)ultimo=temp;
+    }
+    else{
+            std::cout<<"ERRO: memoria esgotada!!!"<<std::endl;
+    }
+}
 
-void ListaCircular::removeInicio(){}
+void ListaCircular::adFinal (std::string p) {
+    if (ultimo != NULL){
+        Celula * temp = new Celula(p, ultimo->getProx());
 
-void ListaCircular::removeFinal(){}
+        if(temp != NULL){
+            ultimo->setProx(temp);
+            tamanho++;
+            ultimo=temp;
+        }
+        else{
+            std::cout<<"ERRO: memoria esgotada!!!"<<std::endl;
+        }
+    }
+    else{
+        Celula * temp = new Celula(p, temp);
+        ultimo=temp;
 
+        if(temp != NULL){
+            ultimo->setProx(temp);
+            tamanho++;
+        }
+        else{
+            std::cout<<"ERRO: memoria esgotada!!!"<<std::endl;
+        }
+    }
+}
 
+void ListaCircular::removeInicio(){
+    ultimo->setProx(ultimo->getProx()->getProx());
+}
+
+void ListaCircular::removeQualquer(Celula * p){
+  Celula * percorre = getUltimo();
+  int count;
+  for (count=0; count<tamanho; count++){
+    if (percorre->getProx() == p){
+      percorre->setProx(percorre->getProx()->getProx());
+      tamanho--;
+      break;
+    }
+    else{
+      percorre = percorre->getProx();
+    }
+  }
+}
